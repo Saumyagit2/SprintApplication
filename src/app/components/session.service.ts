@@ -25,7 +25,7 @@ export class SessionService {
          {
 
           taskname: 'Malware detection',
-          description:'Antivirus Software using blockchan and deep learnng',
+          description:'Antivirus Software using blockchain and deep learnng',
           start:'18-03-2021',
           end: '27-03-2021'
            },
@@ -42,7 +42,7 @@ export class SessionService {
 
   deleteSession(session:Session){
     for(let item of this.sessionItems){
-        if((item.taskname === session.taskname) && (item.start === session.start) && (item.description===session.description)){
+        if((item.taskname === session.taskname) && (item.start === session.start) &&(item.end===session.end)&& (item.description===session.description)){
           this.sessionItems.splice(this.sessionItems.indexOf(item),1);
           return true;
         }
@@ -54,6 +54,8 @@ export class SessionService {
   updateSession(index:number,session:Session){
     this.sessionItems[index].taskname = session.taskname;
      this.sessionItems[index].description = session.description;
+     this.sessionItems[index].start = session.start;
+     this.sessionItems[index].end =session.end;
   }
 
 

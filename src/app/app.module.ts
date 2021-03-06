@@ -17,6 +17,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { GoogleAuthComponent } from './components/google-auth/google-auth.component';
 import { AddTaskComponent } from './components/add-task/add-task.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
+import { TaskUpdateComponent } from './components/task-update/task-update.component';
 
 // Client id for the google oauth. This is used for validation of our application to google.
 // https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin
@@ -33,7 +34,8 @@ let config = new AuthServiceConfig([
     AppComponent,
     GoogleAuthComponent,
     AddTaskComponent,
-    TaskListComponent
+    TaskListComponent,
+    TaskUpdateComponent
   ],
   // Injecting the social-login-module during the application startup!
   imports: [
