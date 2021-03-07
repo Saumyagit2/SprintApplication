@@ -5,8 +5,11 @@
    <button style="margin: 10px;" mat-button color="primary" (click)="updateSelected(todo)">{{ todo.title }}</button>
 </div> -->
 
+<button mat-raised-button style="margin: 20px;"color="primary" (click)="addTask()">Add Task</button>
+    
 <mat-card style="margin: 10px; width: 300px; display:inline-block;" *ngFor="let session of sessionItems;let i = index">
     
+   
     <mat-card-title>{{session.taskname}}</mat-card-title>
 
     <mat-card-content>{{session.description}}</mat-card-content>
@@ -17,6 +20,9 @@
 
     <button mat-raised-button style="margin: 20px;"color="primary" (click)="updateSession(i)">Update</button>
     <button mat-raised-button color="primary" (click)="deleteSession(session)">Delete</button>
-
+    <button mat-raised-button style="margin: 20px;"color="primary" (click)="addTask()">Add Subtask </button>
+  
+    
 </mat-card>
+
 

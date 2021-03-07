@@ -31,7 +31,7 @@ export class GoogleAuthComponent implements OnInit {
     );
   }*/
 
- singIn(platform : string): void {
+ singInWithGoogle(platform : string): void {
     platform = GoogleLoginProvider.PROVIDER_ID;
     this._socioAuthServ.signIn(platform).then(
       (employee) => {
@@ -42,14 +42,14 @@ export class GoogleAuthComponent implements OnInit {
            this.message = data;
            if(this.message)
            {
-        this.router.navigateByUrl('/add-task');
+        this.router.navigateByUrl('/task-list');
           }
         })
       });
     }
 
-  addtask(){
-  this.router.navigateByUrl('/add-task');
+  signIn(){
+  this.router.navigateByUrl('/task-list');
   }
 
   

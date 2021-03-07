@@ -33,6 +33,9 @@ export class TaskListComponent implements OnInit {
     }
     return this.sessionService.getSessions();
   }
-
+addTask()
+{
+  this.router.navigateByUrl('/add-task');
+}
 
 }
