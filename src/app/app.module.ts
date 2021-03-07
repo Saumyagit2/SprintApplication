@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {MatCardModule} from '@angular/material'
 // Importing social login module and google login provider.
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from 'angular4-social-login';
+import {HttpClientModule} from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,7 +36,8 @@ let config = new AuthServiceConfig([
     GoogleAuthComponent,
     AddTaskComponent,
     TaskListComponent,
-    TaskUpdateComponent
+    TaskUpdateComponent,
+    
   ],
   // Injecting the social-login-module during the application startup!
   imports: [
@@ -50,7 +52,8 @@ let config = new AuthServiceConfig([
     MatDialogModule,
     MatToolbarModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
 
   ],
   providers: [],
