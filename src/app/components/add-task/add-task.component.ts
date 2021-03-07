@@ -5,6 +5,10 @@ import { SessionService } from '../session.service'
 import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import {Session} from '../modal/session'
 import { TaskListComponent } from '../task-list/task-list.component';
+import { PrimaryTask } from '../modal/PrimaryTask';
+import {EmployeeService} from '../employee.service';
+import { ThrowStmt } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-add-task',
@@ -13,12 +17,15 @@ import { TaskListComponent } from '../task-list/task-list.component';
 })
 export class AddTaskComponent implements OnInit
 {
+  message:any;
+  task:PrimaryTask;
   sessionForm!: FormGroup;
-  constructor(private router:Router,private sessionService:SessionService) { }
+  constructor(private router:Router,private sessionService:SessionService, private service:EmployeeService) { }
 
   ngOnInit(): void{
     this.sessionForm = new FormGroup({
-      taskname : new FormControl('', Validators.required),
+   //   taskname : new FormControl('', Validators.required),
+      taskname : new FormControl(''),
       description : new FormControl('', Validators.required),
       start : new FormControl(''),
       end : new FormControl('')
@@ -54,7 +61,26 @@ export class AddTaskComponent implements OnInit
       start: this.start.value,
       end: this.end.value
     }
+    //console.log(this.user.name);
+    const temp_task:PrimaryTask = {
+      taskName : this.taskname.value,
+      description : this.description.value,
+      employeeId:1,
+      startDate: this.start.value,
+      endDate: this.end.value,
+      estimatedHours :20,
+      creatorId:1,
+      modifierId:1
+    }
+    this.task=temp_task;
+    let response =   this.service.addPrimaryTask(this.task);
+        response.subscribe(data => {
+          this.message =   data;
+          
+          console.log(this.message);
+        })
     this.sessionService.addSessions(session);
+    console.log(session);
     this.router.navigateByUrl('/task-list');
   }
 

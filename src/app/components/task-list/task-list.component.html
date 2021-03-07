@@ -7,19 +7,19 @@
 
 <button mat-raised-button style="margin: 20px;"color="primary" (click)="addTask()">Add Task</button>
     
-<mat-card style="margin: 10px; width: 300px; display:inline-block;" *ngFor="let session of sessionItems;let i = index">
+<mat-card *ngFor="let task of tasks;let i = index" style="margin: 10px; width: 300px; display:inline-block;">
     
    
-    <mat-card-title>{{session.taskname}}</mat-card-title>
+    <mat-card-title>{{task.taskName}}</mat-card-title>
 
-    <mat-card-content>{{session.description}}</mat-card-content>
+    <mat-card-content>{{task.description}}</mat-card-content>
 
-    <mat-card-content>{{session.start}}</mat-card-content>
+    <mat-card-content>{{task.startDate}}</mat-card-content>
     
-    <mat-card-content>{{session.end}}</mat-card-content>
+    <mat-card-content>{{task.endDate}}</mat-card-content>
 
     <button mat-raised-button style="margin: 20px;"color="primary" (click)="updateSession(i)">Update</button>
-    <button mat-raised-button color="primary" (click)="deleteSession(session)">Delete</button>
+    <button mat-raised-button color="primary" (click)="removeTask(task.taskId)">Delete</button>
     <button mat-raised-button style="margin: 20px;"color="primary" (click)="addTask()">Add Subtask </button>
   
     

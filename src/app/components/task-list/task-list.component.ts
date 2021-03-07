@@ -3,17 +3,25 @@ import { MatDialog } from '@angular/material/dialog';
 import { SessionService } from '../session.service'
 import {Session} from '../modal/session'
 import {Router} from '@angular/router';
+import {EmployeeService} from '../employee.service';
 import {TaskUpdateComponent} from '../task-update/task-update.component'
+import { PrimaryTask } from '../modal/PrimaryTask';
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
+  tasks:any;
   sessionItems!: Session[];
-  constructor(private sessionService:SessionService, private dialog:MatDialog,private router:Router) { }
+  constructor(private service:EmployeeService,private sessionService:SessionService, private dialog:MatDialog,private router:Router) { }
   ngOnInit(): void {
     this.sessionItems = this.sessionService.getSessions();
+    let response = this.service.getAllTasks();
+    response.subscribe(
+      data=>this.tasks=data
+      );
+     // console.log(this.tasks);
   }
   updateSession(i:number){
     this.dialog.open(TaskUpdateComponent, {
@@ -37,5 +45,10 @@ addTask()
 {
   this.router.navigateByUrl('/add-task');
 }
-
+   removeTask(id:number)
+   {
+       let response = this.service.deleteTaskByid(id);
+       response.subscribe(data=>this.tasks=data);
+       //this.router.navigateByUrl('/task-list');
+   }
 }
