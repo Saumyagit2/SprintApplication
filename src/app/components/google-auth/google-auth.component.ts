@@ -42,7 +42,7 @@ export class GoogleAuthComponent implements OnInit {
            this.message = data;
            if(this.message)
            {
-        this.router.navigateByUrl('/task-list');
+             this.router.navigateByUrl('/task-list');
           }
         })
       });
