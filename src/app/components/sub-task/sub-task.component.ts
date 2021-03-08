@@ -73,7 +73,7 @@ export class SubTaskComponent implements OnInit {
       modifierId:1
     }
     this.task=temp_task;
-    let response =   this.service.addPrimaryTask(this.task);
+    let response =   this.service.addSubTask(this.task);
         response.subscribe(data => {
           this.message =   data;
           

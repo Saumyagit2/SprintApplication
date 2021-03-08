@@ -13,14 +13,18 @@ import {SubtaskUpdateComponent} from '../subtask-update/subtask-update.component
   styleUrls: ['./subtask-list.component.css']
 })
 export class SubtaskListComponent implements OnInit {
-
+    subtasks:any;
   sessionItems!: Session[];
 
   constructor(private router:Router,private sessionService:SessionService, private service:EmployeeService,private dialog:MatDialog) { }
 
   ngOnInit():void {
-    this.sessionItems = this.sessionService.getSessions();
- 
+    let response = this.service.getAllSubTasks();
+    response.subscribe(
+      data=>this.subtasks=data
+      );
+      console.log(this.subtasks);
+      
   }
 
 

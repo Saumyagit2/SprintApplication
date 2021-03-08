@@ -29,7 +29,15 @@ export class EmployeeService {
   {
     return this.http.post("http://localhost:8080/addSub/",subtask,{responseType : "text" as "json"});
   }
+  public getAllSubTasks()
+  {
+    return this.http.get("http://localhost:8080/all-SubTasks/");
+  }
 
 
+  public updateTask(task)
+  {
+    return this.http.put("http://localhost:8080/updateTask/",task,{responseType : "text" as "json"});
+  }
 
 }

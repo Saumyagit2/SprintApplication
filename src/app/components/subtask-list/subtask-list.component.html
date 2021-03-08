@@ -5,13 +5,12 @@
    <button style="margin: 10px;" mat-button color="primary" (click)="updateSelected(todo)">{{ todo.title }}</button>
 </div> -->
 
-<mat-card style="margin: 10px; width: 300px; display: inline-block;" *ngFor="let session of sessionItems;let i = index">
+<mat-card style="margin: 10px; width: 300px; display: inline-block;"*ngFor="let subtask of subtasks;let i = index">
     
-    <mat-card-title>{{session.taskname}}</mat-card-title>
-
-
-    <mat-card-content>{{session.start}}</mat-card-content>
-    <mat-card-content>{{session.end}}</mat-card-content>
+    <mat-card-title>{{subtask.subtaskName}}</mat-card-title>
+    <mat-card-title>{{subtask.description}}</mat-card-title>
+    <mat-card-content>{{subtask.startDate}}</mat-card-content>
+    <mat-card-content>{{subtask.endDate}}</mat-card-content>
 
     <button mat-raised-button style="margin: 20px;"color="primary" (click)="updateSession(i)">Update</button>
     <button mat-raised-button color="primary" (click)="deleteSession(session)">Delete</button>
