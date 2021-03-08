@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {EmployeeService} from '../employee.service';
 import {TaskUpdateComponent} from '../task-update/task-update.component'
 import { PrimaryTask } from '../modal/PrimaryTask';
+import {SubTaskComponent} from '../sub-task/sub-task.component';
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
@@ -41,14 +42,21 @@ export class TaskListComponent implements OnInit {
     }
     return this.sessionService.getSessions();
   }
-addTask()
+
+addSubTask()
 {
-  this.router.navigateByUrl('/add-task');
+  this.router.navigateByUrl('/sub-task');
 }
+
    removeTask(id:number)
    {
        let response = this.service.deleteTaskByid(id);
        response.subscribe(data=>this.tasks=data);
        //this.router.navigateByUrl('/task-list');
+   }
+   addTask()
+   {
+    this.router.navigateByUrl('/add-task');
+
    }
 }

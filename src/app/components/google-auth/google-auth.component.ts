@@ -58,5 +58,4 @@ export class GoogleAuthComponent implements OnInit {
     this.user = null;
     console.log('User signed out.');
   }
-
 }

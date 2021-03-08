@@ -19,6 +19,8 @@ import { GoogleAuthComponent } from './components/google-auth/google-auth.compon
 import { AddTaskComponent } from './components/add-task/add-task.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskUpdateComponent } from './components/task-update/task-update.component';
+import { SubTaskComponent } from './components/sub-task/sub-task.component';
+import { SubtaskListComponent } from './components/subtask-list/subtask-list.component';
 
 // Client id for the google oauth. This is used for validation of our application to google.
 // https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin
@@ -37,6 +39,8 @@ let config = new AuthServiceConfig([
     AddTaskComponent,
     TaskListComponent,
     TaskUpdateComponent,
+    SubTaskComponent,
+    SubtaskListComponent,
     
   ],
   // Injecting the social-login-module during the application startup!

@@ -8,8 +8,7 @@ import { TaskListComponent } from '../task-list/task-list.component';
 import { PrimaryTask } from '../modal/PrimaryTask';
 import {EmployeeService} from '../employee.service';
 import { ThrowStmt } from '@angular/compiler';
-
-
+import {} from '../sub-task/sub-task.component';
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
