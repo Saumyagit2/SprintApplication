@@ -6,7 +6,8 @@ import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import {Session} from '../modal/session'
 import { SubtaskListComponent} from '../subtask-list/subtask-list.component';
 import { ThrowStmt } from '@angular/compiler';
-
+import {SubTask} from '../modal/SubTask';
+import {EmployeeService} from '../employee.service';
 @Component({
   selector: 'app-sub-task',
   templateUrl: './sub-task.component.html',
@@ -14,12 +15,11 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class SubTaskComponent implements OnInit {
   sessionForm!: FormGroup;
-  constructor(private router:Router,private sessionService:SessionService ) { }
+  message:any;
+  task:SubTask;
+ 
+  constructor(private router:Router,private sessionService:SessionService,private service:EmployeeService ) { }
 
-  // ngOnInit()
-  // {
-
-  // }
   ngOnInit(): void{
     this.sessionForm = new FormGroup({
    //   taskname : new FormControl('', Validators.required),
@@ -43,14 +43,44 @@ export class SubTaskComponent implements OnInit {
   get end() {
     return this.sessionForm.get('end') as FormControl;
   }
-  addToList(){
-    const session:Session = {
+  // addToList(){
+  //   const session:Session = {
+  //     taskname : this.taskname.value,
+  //     description : this.description.value,
+  //     start : this.start.value,
+  //     end: this.end.value
+  //   }
+  //   this.sessionService.addSessions(session);
+  //   this.router.navigateByUrl('/subtask-list');
+  // }
+  addToList()
+  {
+    const session :Session = {
       taskname : this.taskname.value,
       description : this.description.value,
-      start : this.start.value,
+      start: this.start.value,
       end: this.end.value
     }
+    //console.log(this.user.name);
+    const temp_task:SubTask = {
+      subtaskName : this.taskname.value,
+      description : this.description.value,
+      employeeId:1,
+      startDate: this.start.value,
+      endDate: this.end.value,
+      estimatedHours :20,
+      creatorId:1,
+      modifierId:1
+    }
+    this.task=temp_task;
+    let response =   this.service.addPrimaryTask(this.task);
+        response.subscribe(data => {
+          this.message =   data;
+          
+          console.log(this.message);
+        })
     this.sessionService.addSessions(session);
+    console.log(session);
     this.router.navigateByUrl('/subtask-list');
   }
   

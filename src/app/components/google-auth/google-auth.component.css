@@ -87,3 +87,10 @@ flex: 0 1 calc(33.3% - 32px);
 .container {
     display: flex;
   }
+
+  
+.btn-block:hover
+{
+background-image:none;
+background-color:#00c3ff;
+}

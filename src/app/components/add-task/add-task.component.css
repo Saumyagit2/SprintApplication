@@ -22,3 +22,10 @@ flex: 0 1 calc(33.3% - 32px);
 {
     margin-left: 44px;
 }
+
+.btn-block:hover
+{
+background-image:none;
+background-color:#00c3ff;
+}
+
