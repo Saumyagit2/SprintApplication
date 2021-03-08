@@ -14,6 +14,7 @@ import {SubTaskComponent} from '../sub-task/sub-task.component';
 })
 export class TaskListComponent implements OnInit {
   tasks:any;
+  status: boolean = false;
   sessionItems!: Session[];
   constructor(private service:EmployeeService,private sessionService:SessionService, private dialog:MatDialog,private router:Router) { }
   ngOnInit(): void {
@@ -22,20 +23,46 @@ export class TaskListComponent implements OnInit {
     response.subscribe(
       data=>this.tasks=data
       );
+     
+     }
      // console.log(this.tasks);
-  }
-  updateSession(i:number){
+  
+  updateTask(i:number){
     this.dialog.open(TaskUpdateComponent, {
-      width:'300px',
-      data: { taskname: this.sessionService.sessionItems[i].taskname, 
-               description: this.sessionService.sessionItems[i].description,
-               start: this.sessionService.sessionItems[i].start,
-               end: this.sessionService.sessionItems[i].end,  
-              index:i
-           },        
+      width:'300px',    
+      data:{
+        taskName : this.tasks[i].taskName,
+        description:this.tasks[i].description,
+        startDate:this.tasks[i].startDate,
+        endDate:this.tasks[i].endDate,
+        index:i,
+        taskId:this.tasks[i].taskId
+      }     
     });
-   
+    this.sessionItems = this.sessionService.getSessions();
   }
+//  update(task:PrimaryTask){
+//      let response = this.service.updateTask(task);
+//         response.subscribe(data=>this.tasks=data);
+//  }
+   
+  // updateSession(i:number){
+  //   this.dialog.open(TaskUpdateComponent, {
+  //     width:'300px',
+  //     data: { taskname: this.sessionService.sessionItems[i].taskname, 
+  //              description: this.sessionService.sessionItems[i].description,
+  //              start: this.sessionService.sessionItems[i].start,
+  //              end: this.sessionService.sessionItems[i].end,  
+  //             index:i
+  //          },        
+  //   });
+   
+  // }
+    
+
+//     // let response = this.service.updateTask(task);
+//     //    response.subscribe(data=>this.tasks=data);
+//   }
   deleteSession(session:Session){
     if(this.sessionService.deleteSession(session)){
       return this.sessionService.getSessions();
