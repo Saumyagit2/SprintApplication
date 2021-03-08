@@ -11,7 +11,8 @@ import { EmployeeService} from '../employee.service'
   styleUrls: ['./google-auth.component.css']
 })
 export class GoogleAuthComponent implements OnInit {
-
+ 
+  myImage : string ='assets/images/sprint_img.jpeg'; 
   message:any;
 
   ngOnInit() {
@@ -58,5 +59,4 @@ export class GoogleAuthComponent implements OnInit {
     this.user = null;
     console.log('User signed out.');
   }
-
 }
