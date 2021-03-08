@@ -12,8 +12,9 @@
     <mat-card-content>{{subtask.startDate}}</mat-card-content>
     <mat-card-content>{{subtask.endDate}}</mat-card-content>
 
-    <button mat-raised-button style="margin: 20px;"color="primary" (click)="updateSession(i)">Update</button>
-    <button mat-raised-button color="primary" (click)="deleteSession(session)">Delete</button>
-
+    
+    <button mat-raised-button style="margin: 20px;"color="primary" (click)="updatesubTask(i)">Update</button>
+    <button mat-raised-button color="primary" (click)="removesubTask(subtask.subtaskId)">Delete</button>
+   
 </mat-card>
 

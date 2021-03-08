@@ -1,5 +1,5 @@
 export interface SubTask {
-    subtaskName: string,
+subtaskName: string,
 description: string,
 employeeId:Number,
 startDate: string,

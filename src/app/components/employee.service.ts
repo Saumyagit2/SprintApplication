@@ -25,6 +25,10 @@ export class EmployeeService {
   {
       return this.http.get("http://localhost:8080/delete/"+id);
   }
+  public deleteSubTaskByid(subTaskId)
+  {
+      return this.http.get("http://localhost:8080/deletesubtask/"+subTaskId);
+  }
   public addSubTask(subtask)
   {
     return this.http.post("http://localhost:8080/addSub/",subtask,{responseType : "text" as "json"});

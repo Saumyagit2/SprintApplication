@@ -67,4 +67,11 @@ export class SubtaskListComponent implements OnInit {
    
   }
 
+  removesubTask(id:number)
+  {
+      let response = this.service.deleteSubTaskByid(id);
+      response.subscribe(data=>this.subtasks=data);
+      //this.router.navigateByUrl('/task-list');
+  }
+
 }
