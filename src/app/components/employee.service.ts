@@ -25,4 +25,9 @@ export class EmployeeService {
   {
       return this.http.get("http://localhost:8080/delete/"+id);
   }
+
+  public updateTask(task)
+  {
+    return this.http.put("http://localhost:8080/updateTask/",task,{responseType : "text" as "json"});
+  }
 }
