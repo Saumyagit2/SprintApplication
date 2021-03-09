@@ -52,20 +52,7 @@ export class SubtaskListComponent implements OnInit {
   //   });
    
   // }
-  updateSession(i:number){
-    this.dialog.open(SubtaskUpdateComponent, {
-      width:'300px',
-      data: { taskname: this.sessionService.sessionItems[i].taskname, 
-               description: this.sessionService.sessionItems[i].description,
-               start: this.sessionService.sessionItems[i].start,
-               end: this.sessionService.sessionItems[i].end,  
-              index:i
-           },        
-    });
-    //this.router.navigateByUrl('/subtask-update');
-  
-   
-  }
+
 
   removesubTask(id:number)
   {
@@ -73,5 +60,21 @@ export class SubtaskListComponent implements OnInit {
       response.subscribe(data=>this.subtasks=data);
       //this.router.navigateByUrl('/task-list');
   }
+
+  updateSubTask(i:number){
+    this.dialog.open(SubtaskUpdateComponent, {
+      width:'300px',    
+      data:{
+        subtaskName : this.subtasks[i].subtaskName,
+        description:this.subtasks[i].description,
+        startDate:this.subtasks[i].startDate,
+        endDate:this.subtasks[i].endDate,
+        index:i,
+        subtaskId:this.subtasks[i].subtaskId
+      }     
+    });
+    this.sessionItems = this.sessionService.getSessions();
+  }
+  
 
 }

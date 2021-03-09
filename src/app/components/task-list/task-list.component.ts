@@ -84,6 +84,5 @@ addSubTask()
    addTask()
    {
     this.router.navigateByUrl('/add-task');
-
    }
 }

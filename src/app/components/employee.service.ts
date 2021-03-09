@@ -44,4 +44,9 @@ export class EmployeeService {
     return this.http.put("http://localhost:8080/updateTask/",task,{responseType : "text" as "json"});
   }
 
+  public updateSubTask(subtask)
+  {
+    return this.http.put("http://localhost:8080/updateSubTask/",subtask,{responseType : "text" as "json"});
+  }
+
 }
