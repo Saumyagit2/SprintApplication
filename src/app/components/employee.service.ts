@@ -49,4 +49,9 @@ export class EmployeeService {
     return this.http.put("http://localhost:8080/updateSubTask/",subtask,{responseType : "text" as "json"});
   }
 
+  public getTaskByTaskName(taskname)
+  {
+    return this.http.get("http://localhost:8080/searchtask/"+taskname);
+  }
+
 }

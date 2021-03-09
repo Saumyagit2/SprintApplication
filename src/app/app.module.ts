@@ -22,6 +22,7 @@ import { TaskUpdateComponent } from './components/task-update/task-update.compon
 import { SubTaskComponent } from './components/sub-task/sub-task.component';
 import { SubtaskListComponent } from './components/subtask-list/subtask-list.component';
 import { SubtaskUpdateComponent } from './components/subtask-update/subtask-update.component';
+import { SearchComponent } from './search/search.component';
 
 // Client id for the google oauth. This is used for validation of our application to google.
 // https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin
@@ -43,6 +44,7 @@ let config = new AuthServiceConfig([
     SubTaskComponent,
     SubtaskListComponent,
     SubtaskUpdateComponent,
+    SearchComponent,
    
     
   ],

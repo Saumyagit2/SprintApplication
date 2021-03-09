@@ -8,6 +8,7 @@ import {TaskUpdateComponent} from '../task-update/task-update.component'
 import { PrimaryTask } from '../modal/PrimaryTask';
 import {SubTaskComponent} from '../sub-task/sub-task.component';
 import { TaskserviceService} from '../../services/taskservice.service';
+import {SearchComponent} from '../../search/search.component';
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
@@ -88,5 +89,9 @@ addSubTask()
    addTask()
    {
     this.router.navigateByUrl('/add-task');
+   }
+   search()
+   {
+    this.router.navigateByUrl('/search');
    }
 }

@@ -8,6 +8,7 @@ import { TaskUpdateComponent } from './components/task-update/task-update.compon
 import { SubTaskComponent } from './components/sub-task/sub-task.component';
 import {SubtaskListComponent} from './components/subtask-list/subtask-list.component';
 import { SubtaskUpdateComponent} from './components/subtask-update/subtask-update.component';
+import {SearchComponent} from './search/search.component';
 const routes: Routes = [
   {path :'',component:GoogleAuthComponent },
   { path: 'add-task', component: AddTaskComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path :'task-update',component:TaskUpdateComponent},
   {path :'sub-task',component: SubTaskComponent },
   {path :'subtask-list',component:SubtaskListComponent},
-  {path :'subtask-update',component:SubtaskUpdateComponent}
+  {path :'subtask-update',component:SubtaskUpdateComponent},
+  {path :'search',component:SearchComponent}
 ];
 
 @NgModule({
