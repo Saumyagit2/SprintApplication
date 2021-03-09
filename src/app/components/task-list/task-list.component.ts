@@ -7,6 +7,7 @@ import {EmployeeService} from '../employee.service';
 import {TaskUpdateComponent} from '../task-update/task-update.component'
 import { PrimaryTask } from '../modal/PrimaryTask';
 import {SubTaskComponent} from '../sub-task/sub-task.component';
+import { TaskserviceService} from '../../services/taskservice.service';
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
@@ -16,13 +17,16 @@ export class TaskListComponent implements OnInit {
   tasks:any;
   status: boolean = false;
   sessionItems!: Session[];
-  constructor(private service:EmployeeService,private sessionService:SessionService, private dialog:MatDialog,private router:Router) { }
+  constructor(private service:EmployeeService,private sessionService:SessionService, private dialog:MatDialog,private router:Router,
+    private taskservice:TaskserviceService) { }
   ngOnInit(): void {
-    this.sessionItems = this.sessionService.getSessions();
+    this.tasks = this.taskservice.getTasks();
+  //  this.sessionItems = this.sessionService.getTasks();
     let response = this.service.getAllTasks();
     response.subscribe(
       data=>this.tasks=data
       );
+     this.taskservice.setTasks(this.tasks);
      
      }
      // console.log(this.tasks);

@@ -9,6 +9,7 @@ import { PrimaryTask } from '../modal/PrimaryTask';
 import {EmployeeService} from '../employee.service';
 import { ThrowStmt } from '@angular/compiler';
 import {SubTaskComponent} from '../sub-task/sub-task.component';
+import {TaskserviceService} from '../../services/taskservice.service';
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
@@ -16,10 +17,12 @@ import {SubTaskComponent} from '../sub-task/sub-task.component';
 })
 export class AddTaskComponent implements OnInit
 {
+  tasks:any;
   message:any;
   task:PrimaryTask;
   sessionForm!: FormGroup;
-  constructor(private router:Router,private sessionService:SessionService, private service:EmployeeService) { }
+  constructor(private router:Router,private sessionService:SessionService, private service:EmployeeService,
+    private taskservice:TaskserviceService) { }
 
   ngOnInit(): void{
     this.sessionForm = new FormGroup({
@@ -78,8 +81,11 @@ export class AddTaskComponent implements OnInit
           
           console.log(this.message);
         })
-    this.sessionService.addSessions(session);
-    console.log(session);
+        let respon = this.service.getAllTasks();
+        respon.subscribe(
+          data=>this.tasks=data
+          );
+    this.taskservice.setTasks(this.tasks); 
     this.router.navigateByUrl('/task-list');
   }
 
