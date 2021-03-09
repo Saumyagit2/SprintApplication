@@ -1,3 +1,4 @@
+
 import { Component,Inject, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -8,6 +9,7 @@ import { SubtaskListComponent } from '../subtask-list/subtask-list.component';
 import { ThrowStmt } from '@angular/compiler';
 import {EmployeeService} from '../employee.service'
 import {SubTask} from '../modal/SubTask'
+import {SubtaskserviceService} from '../../services/subtaskservice.service';
 
 @Component({
   selector: 'app-task-update',
@@ -23,7 +25,7 @@ export class SubtaskUpdateComponent implements OnInit {
   //private sessionService: SessionService,private router:Router, private dialogRef:MatDialogRef<SubtaskListComponent>) { }
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {subtaskName: string,description:string,startDate:string,endDate:string,index:number,subtaskId:number}
-  ,private dialogRef:MatDialogRef<SubtaskListComponent>,private service:EmployeeService,private router:Router){}
+  ,private dialogRef:MatDialogRef<SubtaskListComponent>,private service:EmployeeService,private router:Router,private subtaskservice:SubtaskserviceService){}
   
 ngOnInit(): void {
 this.sessionForm = new FormGroup({
@@ -61,6 +63,7 @@ get end() {
       subtaskId:this.data.subtaskId,
       subtaskName : this.taskname.value,
       description : this.description.value,
+      primarytaskId:this.subtaskservice.getPrimaryid(),
       employeeId:1,
       startDate: this.start.value,
       endDate: this.end.value,

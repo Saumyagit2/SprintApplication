@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatCardModule} from '@angular/material'
+import {MatCardModule, MatIcon} from '@angular/material'
 // Importing social login module and google login provider.
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from 'angular4-social-login';
 import {HttpClientModule} from '@angular/common/http';
@@ -10,12 +10,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RouterModule,Routes} from '@angular/router'
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import { GoogleAuthComponent } from './components/google-auth/google-auth.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { AddTaskComponent } from './components/add-task/add-task.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskUpdateComponent } from './components/task-update/task-update.component';
@@ -62,7 +63,9 @@ let config = new AuthServiceConfig([
     MatToolbarModule,
     RouterModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatExpansionModule,
+    MatIconModule
 
   ],
   providers: [],

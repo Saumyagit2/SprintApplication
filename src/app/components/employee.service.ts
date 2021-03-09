@@ -53,5 +53,10 @@ export class EmployeeService {
   {
     return this.http.get("http://localhost:8080/searchtask/"+taskname);
   }
+  public getAllSubTasksById(id)
+  {
+    return this.http.get("http://localhost:8080/getAllSubtasks/"+id);
+  }
+
 
 }

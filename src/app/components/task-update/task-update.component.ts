@@ -8,6 +8,7 @@ import { TaskListComponent } from '../task-list/task-list.component';
 import { ThrowStmt } from '@angular/compiler';
 import { PrimaryTask } from '../modal/PrimaryTask';
 import {EmployeeService} from '../employee.service';
+import {TaskserviceService} from '../../services/taskservice.service';
 
 @Component({
   selector: 'app-task-update',
@@ -23,7 +24,7 @@ task:any;
 tasks:any;
 
 constructor(@Inject(MAT_DIALOG_DATA) public data: {taskName: string,description:string,startDate:string,endDate:string,index:number,taskId:number}
-,private dialogRef:MatDialogRef<TaskListComponent>,private service:EmployeeService,private router:Router){}
+,private dialogRef:MatDialogRef<TaskListComponent>,private service:EmployeeService,private router:Router,private taskservice:TaskserviceService){}
 
 ngOnInit(): void {
 
@@ -70,10 +71,18 @@ get end() {
       modifierId:1
     }
     this.task=temp_task;
+    this.dialogRef.close();
   //console.log(this.data.taskId);
        let response = this.service.updateTask(this.task);
        response.subscribe(data=>this.tasks=data);
-       this.dialogRef.close();
+      // this.router.navigateByUrl('/task-list');
+      window.location.reload();
+    //   this.router.navigateByUrl('/task-list', { skipLocationChange: false }).then(() => {
+    //     this.router.navigate(['/task-update']);
+    // });
+    // this.taskservice.updateTask(this.data.index,this.task);
+     this.taskservice.setTasks(this.tasks);
+    
        //this.router.navigateByUrl('/task-list');
     }
 

@@ -8,6 +8,8 @@ import { SubtaskListComponent} from '../subtask-list/subtask-list.component';
 import { ThrowStmt } from '@angular/compiler';
 import {SubTask} from '../modal/SubTask';
 import {EmployeeService} from '../employee.service';
+import {SubtaskserviceService} from '../../services/subtaskservice.service';
+
 @Component({
   selector: 'app-sub-task',
   templateUrl: './sub-task.component.html',
@@ -16,9 +18,10 @@ import {EmployeeService} from '../employee.service';
 export class SubTaskComponent implements OnInit {
   sessionForm!: FormGroup;
   message:any;
-  task:SubTask;
- 
-  constructor(private router:Router,private sessionService:SessionService,private service:EmployeeService ) { }
+  subtask:SubTask;
+  subtasks:any;
+  constructor(private router:Router,private sessionService:SessionService,private service:EmployeeService,
+    private subtaskservice:SubtaskserviceService ) { }
 
   ngOnInit(): void{
     this.sessionForm = new FormGroup({
@@ -65,6 +68,7 @@ export class SubTaskComponent implements OnInit {
     const temp_task:SubTask = {
       subtaskName : this.taskname.value,
       description : this.description.value,
+      primarytaskId:this.subtaskservice.getPrimaryid(),
       employeeId:1,
       startDate: this.start.value,
       endDate: this.end.value,
@@ -72,17 +76,23 @@ export class SubTaskComponent implements OnInit {
       creatorId:1,
       modifierId:1
     }
-    this.task=temp_task;
-    let response =   this.service.addSubTask(this.task);
+    this.subtask=temp_task;
+    let response =   this.service.addSubTask(this.subtask);
         response.subscribe(data => {
           this.message =   data;
           
           console.log(this.message);
         })
+
+        let respon = this.service.getAllTasks();
+        respon.subscribe(
+          data=>this.subtasks=data
+          );
+    this.subtaskservice.setSubtasks(this.subtasks); 
     this.sessionService.addSessions(session);
     console.log(session);
-    this.router.navigateByUrl('/subtask-list');
-  }
+    this.router.navigateByUrl('/task-list');
+   }
   
   deleteSession(sessionToDelete: Session){
     this.sessionService.deleteSession(sessionToDelete) 

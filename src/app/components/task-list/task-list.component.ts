@@ -8,7 +8,8 @@ import {TaskUpdateComponent} from '../task-update/task-update.component'
 import { PrimaryTask } from '../modal/PrimaryTask';
 import {SubTaskComponent} from '../sub-task/sub-task.component';
 import { TaskserviceService} from '../../services/taskservice.service';
-import {SearchComponent} from '../../search/search.component';
+import {SubtaskserviceService} from '../../services/subtaskservice.service';
+
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
@@ -16,10 +17,11 @@ import {SearchComponent} from '../../search/search.component';
 })
 export class TaskListComponent implements OnInit {
   tasks:any;
+  subtasks:any;
   status: boolean = false;
   sessionItems!: Session[];
   constructor(private service:EmployeeService,private sessionService:SessionService, private dialog:MatDialog,private router:Router,
-    private taskservice:TaskserviceService) { }
+    private taskservice:TaskserviceService,private subtaskservice:SubtaskserviceService) { }
   ngOnInit(): void {
     this.tasks = this.taskservice.getTasks();
   //  this.sessionItems = this.sessionService.getTasks();
@@ -44,7 +46,8 @@ export class TaskListComponent implements OnInit {
         taskId:this.tasks[i].taskId
       }     
     });
-    this.sessionItems = this.sessionService.getSessions();
+    //this.tasks = this.taskservice.getTasks();
+    //this.sessionItems = this.sessionService.getSessions();
   }
 //  update(task:PrimaryTask){
 //      let response = this.service.updateTask(task);
@@ -75,8 +78,9 @@ export class TaskListComponent implements OnInit {
     return this.sessionService.getSessions();
   }
 
-addSubTask()
+addSubTask(id:number)
 {
+  this.subtaskservice.setPrimaryid(id);
   this.router.navigateByUrl('/sub-task');
 }
 
@@ -88,10 +92,18 @@ addSubTask()
    }
    addTask()
    {
+
     this.router.navigateByUrl('/add-task');
    }
-   search()
+   viewSubTasks(id:number)
    {
-    this.router.navigateByUrl('/search');
+     this.subtaskservice.setPrimaryid(id);
+     this.router.navigateByUrl('/subtask-list'); 
+        // let response = this.service.getAllSubTasksById(id);
+        // response.subscribe(data=>this.subtasks=data);    
+        // console.log(this.subtasks);
+        // this.subtaskservice.setSubtasks(this.subtasks);
+        // console.log(this.subtaskservice.getSubtasks());
+                                     
    }
 }

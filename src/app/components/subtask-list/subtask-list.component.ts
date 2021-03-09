@@ -7,6 +7,8 @@ import {Session} from '../modal/session'
 import {EmployeeService} from '../employee.service';
 import { SubTaskComponent} from '../sub-task/sub-task.component';
 import {SubtaskUpdateComponent} from '../subtask-update/subtask-update.component';
+import {SubtaskserviceService} from '../../services/subtaskservice.service';
+
 @Component({
   selector: 'app-subtask-list',
   templateUrl: './subtask-list.component.html',
@@ -16,16 +18,22 @@ export class SubtaskListComponent implements OnInit {
     subtasks:any;
   sessionItems!: Session[];
 
-  constructor(private router:Router,private sessionService:SessionService, private service:EmployeeService,private dialog:MatDialog) { }
+  constructor(private router:Router,private sessionService:SessionService, private service:EmployeeService,private dialog:MatDialog,
+    private subtaskservice:SubtaskserviceService) { }
 
-  ngOnInit():void {
-    let response = this.service.getAllSubTasks();
-    response.subscribe(
-      data=>this.subtasks=data
-      );
-      console.log(this.subtasks);
-      
-  }
+    ngOnInit():void {
+  
+      // let response = this.service.getAllSubTasks();
+      // response.subscribe(
+      //   data=>this.subtasks=data
+      //   );
+       // console.log(this.subtasks);
+       let response = this.service.getAllSubTasksById(this.subtaskservice.getPrimaryid());
+       response.subscribe(data=>this.subtasks=data);    
+        this.subtaskservice.setSubtasks(this.subtasks);
+        this.subtasks = this.subtaskservice.getSubtasks();
+    }
+  
 
 
   addSession(){
